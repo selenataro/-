@@ -1,0 +1,209 @@
+/* Общие стили для всей страницы */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cinzel Decorative', cursive; /* Декоративный шрифт */
+    color: #ffd700; /* Золотой цвет текста */
+    background: linear-gradient(135deg, #2c003c, #0d001a); /* Пурпурно-черный градиент */
+    min-height: 100vh; /* Минимальная высота на весь экран */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden; /* Скрываем излишки, если есть фоновые элементы */
+    position: relative; /* Для позиционирования псевдоэлементов */
+}
+
+/* Эзотерические фоновые элементы (дым, искры) */
+body::before,
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Чтобы не мешали взаимодействию с элементами */
+    z-index: -1; /* Помещаем под основной контент */
+}
+
+/* Эффект дыма (примерный, можно доработать с изображением) */
+body::before {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+    animation: smoke 15s infinite alternate;
+}
+
+@keyframes smoke {
+    0% { opacity: 0.5; transform: scale(1); }
+    100% { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* Эффект мерцания (похож на искры) */
+body::after {
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 5px
+    );
+    animation: flicker 5s infinite linear;
+}
+
+@keyframes flicker {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+}
+
+
+/* Контейнер для основного контента */
+.container {
+    background-color: rgba(13, 0, 26, 0.8); /* Полупрозрачный темно-пурпурный фон */
+    border: 2px solid #a300a3; /* Пурпурная рамка */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 40px rgba(163, 0, 163, 0.7); /* Эффект свечения */
+    text-align: center;
+    max-width: 90%;
+    width: 600px;
+    position: relative; /* Для позиционирования элементов внутри */
+    z-index: 1; /* Чтобы был поверх фоновых эффектов */
+    backdrop-filter: blur(5px); /* Легкое размытие фона за контейнером */
+}
+
+/* Заголовок */
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px #ffd700; /* Золотое свечение заголовка */
+}
+
+/* Секция отображения карты */
+.card-display {
+    background-color: rgba(0, 0, 0, 0.6); /* Темный фон для карты */
+    border: 1px solid #ffd700; /* Золотая рамка */
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+    min-height: 250px; /* Минимальная высота, чтобы не "прыгало" */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-image {
+    max-width: 180px; /* Максимальная ширина карты */
+    height: auto;
+    border: 2px solid #a300a3; /* Пурпурная рамка вокруг изображения */
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); /* Золотое свечение карты */
+    transition: transform 0.3s ease-in-out; /* Плавное увеличение при наведении */
+}
+
+.card-image:hover {
+    transform: scale(1.05);
+}
+
+.card-name {
+    font-size: 1.3em;
+    color: #a300a3; /* Пурпурный цвет для названия карты */
+    margin-top: 15px;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Золотое свечение текста */
+}
+
+/* Кнопка "Вытянуть Карту" */
+button {
+    background: linear-gradient(45deg, #a300a3, #4b005e); /* Пурпурный градиент */
+    color: #ffd700; /* Золотой текст */
+    border: 2px solid #ffd700; /* Золотая рамка */
+    padding: 12px 25px;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-bottom: 25px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); /* Золотое свечение */
+}
+
+button:hover {
+    background: linear-gradient(45deg, #4b005e, #a300a3); /* Обратный градиент при наведении */
+    transform: translateY(-3px); /* Немного приподнимаем кнопку */
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); /* Усиливаем свечение */
+}
+
+button:active {
+    transform: translateY(0); /* Возвращаем на место при нажатии */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+/* Блок с описанием карты */
+.card-description-box {
+    background-color: rgba(0, 0, 0, 0.6); /* Темный фон */
+    border: 1px solid #a300a3; /* Пурпурная рамка */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    font-size: 1.1em;
+    line-height: 1.6;
+    min-height: 100px; /* Минимальная высота для блока описания */
+    color: #e0e0e0; /* Светло-серый текст для лучшей читаемости */
+    box-shadow: 0 0 20px rgba(163, 0, 163, 0.5); /* Пурпурное свечение */
+}
+
+.card-description {
+    color: #e0e0e0; /* Текст описания */
+}
+
+/* Медиа-запросы для адаптивности на маленьких экранах */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .card-image {
+        max-width: 150px;
+    }
+
+    .card-name {
+        font-size: 1.1em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+
+    .card-description-box {
+        font-size: 0.95em;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .card-image {
+        max-width: 120px;
+    }
+
+    .card-name {
+        font-size: 1em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+
+    .card-description-box {
+        font-size: 0.9em;
+        padding: 15px;
+    }
+  }
